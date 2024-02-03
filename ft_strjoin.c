@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sfazzell <sfazzell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/03 11:21:26 by sfazzell          #+#    #+#             */
-/*   Updated: 2024/02/03 11:21:26 by sfazzell         ###   ########.fr       */
+/*   Created: 2024/02/03 20:23:50 by sfazzell          #+#    #+#             */
+/*   Updated: 2024/02/03 20:23:50 by sfazzell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include <string.h>
 
-int ft_strcmp(const char *s1, const char *s2)
+char *ft_strjoin(char const *s1, char const *s2)
 {
-	int i;
-	int l1;
-	int l2;
+	char *r;
 
-	if (ft_strequ(s1, s2))
-		return (0);
-	l1 = ft_strlen(s1);
-	l2 = ft_strlen(s2);
-	i = 0;
-	while (i < l1 && i < l2)
+	if (s1 && s2)
 	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
-		i++;
+		r = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+		if (r)
+		{
+			ft_strcpy(r, s1);
+			ft_strcat(r, s2);
+			return (r);
+		}
 	}
-	return (s1[i] - s2[i]);
-}

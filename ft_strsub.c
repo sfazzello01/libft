@@ -1,33 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sfazzell <sfazzell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/03 11:21:26 by sfazzell          #+#    #+#             */
-/*   Updated: 2024/02/03 11:21:26 by sfazzell         ###   ########.fr       */
+/*   Created: 2024/02/03 20:19:22 by sfazzell          #+#    #+#             */
+/*   Updated: 2024/02/03 20:19:22 by sfazzell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 
-int ft_strcmp(const char *s1, const char *s2)
+char *ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	int i;
-	int l1;
-	int l2;
+	char *sub;
+	size_t i;
 
-	if (ft_strequ(s1, s2))
-		return (0);
-	l1 = ft_strlen(s1);
-	l2 = ft_strlen(s2);
-	i = 0;
-	while (i < l1 && i < l2)
+	if (s)
 	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
-		i++;
+		sub = (char *)malloc(sizeof(char) * (len + 1));
+		if (sub)
+		{
+			i = 0;
+			while (i < len)
+			{
+				sub[i] = s[start + i];
+				i++;
+			}
+			sub[i] = '\0';
+			return (sub);
+		}
 	}
-	return (s1[i] - s2[i]);
+	return (NULL);
 }

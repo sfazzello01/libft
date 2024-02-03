@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strnequ.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sfazzell <sfazzell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/03 11:21:26 by sfazzell          #+#    #+#             */
-/*   Updated: 2024/02/03 11:21:26 by sfazzell         ###   ########.fr       */
+/*   Created: 2024/02/03 20:09:49 by sfazzell          #+#    #+#             */
+/*   Updated: 2024/02/03 20:09:49 by sfazzell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 
-int ft_strcmp(const char *s1, const char *s2)
+int ft_strnequ(char const *s1, char const *s2, size_t n)
 {
-	int i;
-	int l1;
-	int l2;
-
-	if (ft_strequ(s1, s2))
-		return (0);
-	l1 = ft_strlen(s1);
-	l2 = ft_strlen(s2);
-	i = 0;
-	while (i < l1 && i < l2)
+	if (s1 && s2)
 	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
-		i++;
+		while (*s1 && *s2 && n)
+		{
+			if (*s1 != *s2)
+				return (0);
+			s1++;
+			s2++;
+			n--;
+		}
+		if (*s1 != *s2)
+			return (0);
+		return (1);
 	}
-	return (s1[i] - s2[i]);
+	return (0);
 }

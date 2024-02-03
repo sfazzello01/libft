@@ -18,6 +18,8 @@ int ft_strncmp(const char *s1, const char *s2, size_t n)
 	int l1;
 	int l2;
 
+	if (ft_strnequ(s1, s2, n))
+		return (0);
 	l1 = ft_strlen(s1);
 	l2 = ft_strlen(s2);
 	i = 0;
