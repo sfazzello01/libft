@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_memalloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sfazzell <sfazzell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/03 11:21:09 by sfazzell          #+#    #+#             */
-/*   Updated: 2024/02/03 11:21:09 by sfazzell         ###   ########.fr       */
+/*   Created: 2024/02/03 12:18:11 by sfazzell          #+#    #+#             */
+/*   Updated: 2024/02/03 12:18:11 by sfazzell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 
-char *strchr(const char *str, int c)
+void	*ft_memalloc(size_t size)
 {
-	int i;
-	int l;
+	void	*ptr;
 
-	l = ft_strlen(str);
-	i = 0;
-	while(i <= l)
-	{
-		if (str[i] == c)
-			return (str + i);
-		i++;
-	}
-	return (NULL);
+	ptr = malloc(size);
+	if (ptr == NULL)
+		return (NULL);
+	ft_bzero(ptr, size);
+	return (ptr);
 }

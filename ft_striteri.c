@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sfazzell <sfazzell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/03 11:21:09 by sfazzell          #+#    #+#             */
-/*   Updated: 2024/02/03 11:21:09 by sfazzell         ###   ########.fr       */
+/*   Created: 2024/02/03 19:51:13 by sfazzell          #+#    #+#             */
+/*   Updated: 2024/02/03 19:51:13 by sfazzell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 
-char *strchr(const char *str, int c)
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	int i;
-	int l;
+	unsigned int	i;
 
-	l = ft_strlen(str);
 	i = 0;
-	while(i <= l)
+	if (s && f)
 	{
-		if (str[i] == c)
-			return (str + i);
-		i++;
+		while (*s)
+		{
+			f(i, s);
+			i++;
+			s++;
+		}
 	}
-	return (NULL);
 }

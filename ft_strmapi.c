@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sfazzell <sfazzell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/03 11:21:09 by sfazzell          #+#    #+#             */
-/*   Updated: 2024/02/03 11:21:09 by sfazzell         ###   ########.fr       */
+/*   Created: 2024/02/03 19:57:17 by sfazzell          #+#    #+#             */
+/*   Updated: 2024/02/03 19:57:17 by sfazzell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 
-char *strchr(const char *str, int c)
+char *ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	int i;
-	int l;
+	char *new;
+	size_t i;
 
-	l = ft_strlen(str);
 	i = 0;
-	while(i <= l)
+	if (s && f)
 	{
-		if (str[i] == c)
-			return (str + i);
-		i++;
+		new = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
+		if (new)
+		{
+			while (s[i])
+			{
+				new[i] = f(i, s[i]);
+				i++;
+			}
+			new[i] = '\0';
+			return (new);
+		}
 	}
 	return (NULL);
 }

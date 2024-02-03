@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sfazzell <sfazzell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/03 11:21:09 by sfazzell          #+#    #+#             */
-/*   Updated: 2024/02/03 11:21:09 by sfazzell         ###   ########.fr       */
+/*   Created: 2024/02/03 12:23:47 by sfazzell          #+#    #+#             */
+/*   Updated: 2024/02/03 12:23:47 by sfazzell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 
-char *strchr(const char *str, int c)
+char	*ft_strnew(size_t size)
 {
-	int i;
-	int l;
+	char	*str;
+	size_t	i;
 
-	l = ft_strlen(str);
 	i = 0;
-	while(i <= l)
+	str = (char *)malloc(size + 1);
+	if (str == NULL)
+		return (NULL);
+	while (i < size)
 	{
-		if (str[i] == c)
-			return (str + i);
+		str[i] = '\0';
 		i++;
 	}
-	return (NULL);
+	str[i] = '\0';
+	return (str);
 }

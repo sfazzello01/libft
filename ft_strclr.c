@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strclr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sfazzell <sfazzell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/03 11:21:09 by sfazzell          #+#    #+#             */
-/*   Updated: 2024/02/03 11:21:09 by sfazzell         ###   ########.fr       */
+/*   Created: 2024/02/03 12:27:56 by sfazzell          #+#    #+#             */
+/*   Updated: 2024/02/03 12:27:56 by sfazzell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 
-char *strchr(const char *str, int c)
+void	ft_strclr(char *s)
 {
-	int i;
-	int l;
-
-	l = ft_strlen(str);
-	i = 0;
-	while(i <= l)
+	if (s)
 	{
-		if (str[i] == c)
-			return (str + i);
-		i++;
+		while (*s)
+		{
+			*s = '\0';
+			s++;
+		}
 	}
-	return (NULL);
 }

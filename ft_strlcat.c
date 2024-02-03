@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sfazzell <sfazzell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/03 11:21:09 by sfazzell          #+#    #+#             */
-/*   Updated: 2024/02/03 11:21:09 by sfazzell         ###   ########.fr       */
+/*   Created: 2024/02/03 12:00:25 by sfazzell          #+#    #+#             */
+/*   Updated: 2024/02/03 12:00:25 by sfazzell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 
-char *strchr(const char *str, int c)
+size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {
-	int i;
-	int l;
+	int	i;
+	int	l;
 
-	l = ft_strlen(str);
+	l = ft_strlen(dest);
 	i = 0;
-	while(i <= l)
+	while (src[i] != '\0' && i + l < size - 1)
 	{
-		if (str[i] == c)
-			return (str + i);
+		dest[l + i] = src[i];
 		i++;
 	}
-	return (NULL);
+	dest[l + i] = '\0';
+	return (l + ft_strlen(src));
 }

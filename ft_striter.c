@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_striter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sfazzell <sfazzell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/03 11:21:09 by sfazzell          #+#    #+#             */
-/*   Updated: 2024/02/03 11:21:09 by sfazzell         ###   ########.fr       */
+/*   Created: 2024/02/03 12:29:05 by sfazzell          #+#    #+#             */
+/*   Updated: 2024/02/03 12:29:05 by sfazzell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 
-char *strchr(const char *str, int c)
+void	ft_striter(char *s, void (*f)(char *))
 {
-	int i;
-	int l;
-
-	l = ft_strlen(str);
-	i = 0;
-	while(i <= l)
+	if (s && f)
 	{
-		if (str[i] == c)
-			return (str + i);
-		i++;
+		while (*s)
+		{
+			f(s);
+			s++;
+		}
 	}
-	return (NULL);
 }
