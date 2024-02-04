@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfazzell <sfazzell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sfazzell <sfazzell@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/03 20:23:50 by sfazzell          #+#    #+#             */
-/*   Updated: 2024/02/03 20:23:50 by sfazzell         ###   ########.fr       */
+/*   Created: 2024/02/04 12:25:49 by sfazzell          #+#    #+#             */
+/*   Updated: 2024/02/04 12:25:49 by sfazzell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include <string.h>
 
