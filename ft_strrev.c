@@ -1,41 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_strrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sfazzell <sfazzell@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/04 12:23:10 by sfazzell          #+#    #+#             */
-/*   Updated: 2024/02/04 12:23:10 by sfazzell         ###   ########.fr       */
+/*   Created: 2024/02/04 18:28:19 by sfazzell          #+#    #+#             */
+/*   Updated: 2024/02/04 18:28:19 by sfazzell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 
-char	*ft_itoa(int n)
+char	*ft_strrev(char *str)
 {
-	char	*res;
-	char	*rev;
 	int		i;
+	int		j;
+	char	tmp;
 
-	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
-	if (n < 0)
-	{
-		res = ft_itoa(-n);
-		rev = ft_strjoin("-", res);
-		free(res);
-		return (rev);
-	}
 	i = 0;
-	res = ft_strnew(11);
-	while (n >= 10)
+	j = ft_strlen(str) - 1;
+	while (i < j)
 	{
-		res[i++] = n % 10 + '0';
-		n = n/10;
+		tmp = str[i];
+		str[i] = str[j];
+		str[j] = tmp;
+		i++;
+		j--;
 	}
-	res[i] = n + '0';
-	rev = ft_strrev(res);
-	free(res);
-	return (rev);
+	return (str);
 }

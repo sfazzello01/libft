@@ -1,41 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sfazzell <sfazzell@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/04 12:23:10 by sfazzell          #+#    #+#             */
-/*   Updated: 2024/02/04 12:23:10 by sfazzell         ###   ########.fr       */
+/*   Created: 2024/02/04 19:46:18 by sfazzell          #+#    #+#             */
+/*   Updated: 2024/02/04 19:46:18 by sfazzell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include <unistd.h>
 
-char	*ft_itoa(int n)
+void	ft_putnbr(int nb)
 {
-	char	*res;
-	char	*rev;
-	int		i;
+	char	c;
 
-	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
-	if (n < 0)
+	if (nb == -2147483648)
 	{
-		res = ft_itoa(-n);
-		rev = ft_strjoin("-", res);
-		free(res);
-		return (rev);
+		write(1, "-2147483648", 11);
+		return ;
 	}
-	i = 0;
-	res = ft_strnew(11);
-	while (n >= 10)
+	if (nb < 0)
 	{
-		res[i++] = n % 10 + '0';
-		n = n/10;
+		write(1, "-", 1);
+		nb = -nb;
 	}
-	res[i] = n + '0';
-	rev = ft_strrev(res);
-	free(res);
-	return (rev);
+	if (nb >= 10)
+		ft_putnbr(nb / 10);
+	c = nb % 10 + '0';
+	write(1, &c, 1)
 }
