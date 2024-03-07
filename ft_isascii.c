@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfazzell <sfazzell@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: sfazzell <sfazzell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 12:23:32 by sfazzell          #+#    #+#             */
-/*   Updated: 2024/02/04 12:23:32 by sfazzell         ###   ########.fr       */
+/*   Updated: 2024/02/22 16:50:47 by sfazzell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_isascii(int i)
+int	ft_isascii(int i)
 {
 	if (0 <= i && i <= 127)
-		return (0);
-	return (1);
+		return (1);
+	return (0);
 }

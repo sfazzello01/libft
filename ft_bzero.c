@@ -6,16 +6,18 @@
 /*   By: sfazzell <sfazzell@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 12:23:23 by sfazzell          #+#    #+#             */
-/*   Updated: 2024/03/07 17:06:24 by sfazzell         ###   ########.fr       */
+/*   Updated: 2024/02/04 12:23:23 by sfazzell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_bzero(void *s, size_t n)
+void	ft_bzero(void *dest, size_t num)
 {
-	unsigned char *p = s;
-	while (n-- > 0)
+	unsigned char	*p;
+
+	p = dest;
+	while (num-- > 0)
 	{
 		*p++ = (unsigned char)0;
 	}

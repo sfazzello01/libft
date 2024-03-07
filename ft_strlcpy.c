@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnequ.c                                       :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfazzell <sfazzell@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: sfazzell <sfazzell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/04 12:27:02 by sfazzell          #+#    #+#             */
-/*   Updated: 2024/02/04 12:27:02 by sfazzell         ###   ########.fr       */
+/*   Created: 2024/02/22 15:10:02 by sfazzell          #+#    #+#             */
+/*   Updated: 2024/02/22 19:23:44 by sfazzell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_strnequ(char const *s1, char const *s2, size_t n)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	if (s1 && s2)
+	size_t	i;
+	size_t	src_len;
+
+	i = 0;
+	src_len = ft_strlen(src);
+	if (dstsize == 0)
+		return (src_len);
+	while (src[i] && i < dstsize - 1)
 	{
-		while (*s1 && *s2 && n)
-		{
-			if (*s1 != *s2)
-				return (0);
-			s1++;
-			s2++;
-			n--;
-		}
-		if (*s1 != *s2)
-			return (0);
-		return (1);
+		dst[i] = src[i];
+		i++;
 	}
-	return (0);
+	dst[i] = '\0';
+	return (src_len);
 }

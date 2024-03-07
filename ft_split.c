@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfazzell <sfazzell@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: sfazzell <sfazzell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 12:23:01 by sfazzell          #+#    #+#             */
-/*   Updated: 2024/03/07 17:25:51 by sfazzell         ###   ########.fr       */
+/*   Updated: 2024/03/07 19:01:44 by sfazzell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,22 @@ static size_t ft_count(char const *s, char c)
 }
 
 static void ft_aux(char *s, char c, char **res, size_t *i, size_t *j) {
-    if (s[*i] != c) {
-        int k = 0;
+	int	k;
+	
+    if (s[*i] != c)
+	{
+        k = 0;
         while (s[*i + k] && s[*i + k] != c)
+		{
+			printf("k: %d\n", k);
             k++;
+		}
         res[*j] = ft_substr(s, *i, k);
         (*j)++;
         *i += k;
-    } else {
-        (*i)++;
     }
+	else if (s[*i] == c)
+        (*i)++;
 }
 
 char **ft_split(char const *s, char c)
@@ -58,7 +64,6 @@ char **ft_split(char const *s, char c)
 	char	**res;
 	size_t	i;
 	size_t	j;
-	size_t	k;
 	
 	if (s)
 	{
@@ -67,8 +72,9 @@ char **ft_split(char const *s, char c)
 		{
 			i = 0;
 			j = 0;
-			while (s[i])
+			while (i < ft_strlen(s))
 			{
+				//printf("i: %zu\n", i);
 				ft_aux((char *)s, c, res, &i, &j);
 			}
 			res[j] = NULL;
@@ -80,14 +86,15 @@ char **ft_split(char const *s, char c)
 
 int main()
 {
-	char *s = " ciao    come va ";
+	char *s = "lorem ipsum dolor sit amet, consectetur adipiscing elit.";
 	char c = ' ';
 	char **res = ft_split(s, c);
 	int i = 0;
 	while (res[i])
 	{
-		printf("%s\n", res[i]);
+		printf("%s - %d\n", res[i], i);
 		i++;
 	}
+	printf("%s\n",res[i]);
 	return 0;
 }

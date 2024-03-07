@@ -3,31 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfazzell <sfazzell@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: sfazzell <sfazzell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 12:27:54 by sfazzell          #+#    #+#             */
-/*   Updated: 2024/02/04 12:27:54 by sfazzell         ###   ########.fr       */
+/*   Updated: 2024/02/23 17:03:28 by sfazzell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "libft.h"
 
-char *ft_strtrim(char const *s)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	char *r;
-	int i;
-	int f;
+	char		*r;
+	size_t 		i;
+	size_t 		f;
 
-	if (s)
+	if (s1)
 	{
+		if (!set)
+			return (ft_strdup(s1));
 		i = 0;
-		f = ft_strlen(s);
-		while (s[i] == ' ' || s[i] == '\n' || s[i] == '\t')
+		f = ft_strlen(s1) - 1;
+		while (s1[i] && ft_strchr(set, s1[i]))
 			i++;
-		while (s[f] == ' ' || s[f] == '\n' || s[f] == '\t')
+		while (s1[f] && ft_strchr(set, s1[f]))
 			f--;
-		r = ft_strnew(f - i);
-		ft_strncpy(r, s + i, f - i);
-		return (r);
+		r = ft_substr(s1, i, f - i + 1);
+		if (r)
+		{
+			return (r);
+		}
+		return (NULL);
 	}
+	return (NULL);
 }
+/*
+int	main(void)
+{
+	char	*str = "ciao";
+	char	*set = " ";
+	char	*trimmed = ft_strtrim(str, set);
+	printf("trimmed: %s\n", trimmed);
+	return (0);
+}*/

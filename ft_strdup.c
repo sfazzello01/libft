@@ -3,28 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfazzell <sfazzell@student.42roma.it>      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/04 12:25:17 by sfazzell          #+#    #+#             */
-/*   Updated: 2024/02/04 12:25:17 by sfazzell         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
 /*   By: sfazzell <sfazzell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/03 11:21:07 by sfazzell          #+#    #+#             */
-/*   Updated: 2024/02/03 11:21:07 by sfazzell         ###   ########.fr       */
+/*   Created: 2024/02/04 12:25:17 by sfazzell          #+#    #+#             */
+/*   Updated: 2024/02/22 18:38:54 by sfazzell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char *ft_strdup(const char *s1)
+char	*ft_strdup(const char *s1)
 {
 	char	*cp;
 	int		i;
@@ -33,11 +21,15 @@ char *ft_strdup(const char *s1)
 	i = 0;
 	l = ft_strlen(s1);
 	cp = (char *)malloc(l + 1);
-	while (i < l)
+	if (cp)
 	{
-		cp[i]= s1[i];
-		i++;
+		while (i < l)
+		{
+			cp[i] = s1[i];
+			i++;
+		}
+		cp[i] = '\0';
+		return (cp);
 	}
-	cp[i] = '\0';
-	return (cp);
+	return (NULL);
 }
