@@ -1,18 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sfazzell <sfazzell@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/04 12:23:26 by sfazzell          #+#    #+#             */
-/*   Updated: 2024/03/07 17:07:22 by sfazzell         ###   ########.fr       */
+/*   Created: 2024/02/04 12:27:44 by sfazzell          #+#    #+#             */
+/*   Updated: 2024/02/04 12:27:44 by sfazzell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_isalnum(int i)
+#include "libft.h"
+
+char *ft_substr(char const *s, unsigned int start, size_t len)
 {
-	if (('a' <= i && i <= 'z') || ('0' <= i && i <= '9') || ('A' <= i && i <= 'Z'))
-		return (1);
-	return (0);
+	char *sub;
+	size_t i;
+
+	if (s)
+	{
+		sub = (char *)malloc(sizeof(char) * (len + 1));
+		if (sub)
+		{
+			i = 0;
+			while (i < len)
+			{
+				sub[i] = s[start + i];
+				i++;
+			}
+			sub[i] = '\0';
+			return (sub);
+		}
+	}
+	return (NULL);
 }

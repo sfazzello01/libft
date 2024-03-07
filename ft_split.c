@@ -11,60 +11,79 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
-static char **ft_process_string(char *s, char c, char **res)
+static size_t ft_count(char const *s, char c)
 {
-	int i;
-	int n;
-	int f;
+	size_t	count;
+	size_t	i;
 
-	n = -1;
-	i = -1;
-	while (*s)
+	i = 0;
+	count = 0;
+	while (s[i])
 	{
-		f = 0;
-		while (s[f] != c && s[f] != '\0')
-			f++;
-		res[++n] = ft_strsub(s, i, f);
-		ft_free_res(res, n);
-		i += f;
-		if (ft_strchr(s, c))
-			s = ft_strchr(s, c) + 1;
+		if (s[i] == c)
+		{
+			while (s[i] == c)
+			{
+					i++;
+					if (!s[i])
+					{
+						printf("count: %zu\n", count);
+						return (count);
+					}
+			}
+			count++;
+		}
+		i++;
 	}
-	res[++n] = NULL; 
-	return res;
+	return (count);
 }
 
-static void ft_free_res(char **res, int n)
+char **ft_split(char const *s, char c)
 {
-	if (!res[n])
+	char	**res;
+	size_t	i;
+	size_t	j;
+	size_t	k;
+	if (s)
 	{
-		while (n >= 0)
-			free(res[n--]);
-		free(res);
+		res = (char **)malloc(sizeof(char *) * (ft_count(s, c)) + 1);
+		if (res)
+		{
+			i = 0;
+			j = 0;
+			while (s[i])
+			{
+				if (s[i] != c)
+				{
+					k = 0;
+					while (s[i + k] && s[i + k] != c)
+						k++;
+					res[j] = ft_substr(s, i, k);
+					j++;
+					i += k;
+				}
+				else
+					i++;
+			}
+			res[j] = NULL;
+			return (res);
+		}
 	}
+	return (NULL);
 }
 
-char **ft_strsplit(char const *s, char c)
+int main()
 {
-	int i;
-	int n;
-	int f;
-	char **res;
-		
-	if (!s)
-		return (NULL);
-	i = -1;
-	n = 0;
-	while (s[++i])
-	if (s[i] == c)
-		n++;
-	res = ft_memalloc(sizeof(char *) * (n + 2));
-	if (!res)
-		return (NULL);
-	i = -1;
-	n = -1;
-	res = ft_process_string(s, c, res);
-	
-	return (res);
+	char *s = " ciao    come va ";
+	char c = ' ';
+	char **res = ft_split(s, c);
+	int i = 0;
+	while (res[i])
+	{
+		printf("%s\n", res[i]);
+		i++;
+	}
+	return 0;
 }

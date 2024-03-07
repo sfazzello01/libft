@@ -6,7 +6,7 @@
 /*   By: sfazzell <sfazzell@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 12:23:10 by sfazzell          #+#    #+#             */
-/*   Updated: 2024/02/04 12:23:10 by sfazzell         ###   ########.fr       */
+/*   Updated: 2024/03/07 17:08:50 by sfazzell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	*ft_itoa(int n)
 {
 	char	*res;
-	char	*rev;
+	//char	*rev;
 	int		i;
 
 	if (n == -2147483648)
@@ -23,9 +23,9 @@ char	*ft_itoa(int n)
 	if (n < 0)
 	{
 		res = ft_itoa(-n);
-		rev = ft_strjoin("-", res);
-		free(res);
-		return (rev);
+		//rev = ft_strjoin("-", res);
+		//free(res);
+		return (res);
 	}
 	i = 0;
 	res = ft_strnew(11);
@@ -35,7 +35,7 @@ char	*ft_itoa(int n)
 		n = n/10;
 	}
 	res[i] = n + '0';
-	rev = ft_strrev(res);
-	free(res);
-	return (rev);
+	//rev = ft_strrev(res);
+	//free(res);
+	return (res);
 }

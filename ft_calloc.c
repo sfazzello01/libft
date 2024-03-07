@@ -1,36 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsub.c                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sfazzell <sfazzell@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/04 12:27:44 by sfazzell          #+#    #+#             */
-/*   Updated: 2024/02/04 12:27:44 by sfazzell         ###   ########.fr       */
+/*   Created: 2024/03/07 17:05:27 by sfazzell          #+#    #+#             */
+/*   Updated: 2024/03/07 17:06:11 by sfazzell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char *ft_strsub(char const *s, unsigned int start, size_t len)
+void *ft_calloc(size_t count, size_t size)
 {
-	char *sub;
-	size_t i;
-
-	if (s)
+	void	*ptr;
+	
+	ptr = malloc(count * size);
+	if (ptr)
 	{
-		sub = (char *)malloc(sizeof(char) * (len + 1));
-		if (sub)
-		{
-			i = 0;
-			while (i < len)
-			{
-				sub[i] = s[start + i];
-				i++;
-			}
-			sub[i] = '\0';
-			return (sub);
-		}
+		ft_bzero(ptr, count * size);
+		return (ptr);
 	}
 	return (NULL);
 }
