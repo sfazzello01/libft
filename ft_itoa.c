@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfazzell <sfazzell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sfazzell <sfazzell@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 12:23:10 by sfazzell          #+#    #+#             */
-/*   Updated: 2024/02/23 16:55:44 by sfazzell         ###   ########.fr       */
+/*   Updated: 2024/03/10 15:37:38 by sfazzell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,12 @@ char	*ft_itoa(int n)
 		return (ft_strrev(str));
 	}
 	return (NULL);
+}
+#include <stdio.h>
+
+int main()
+{
+	int n = 1234567890;
+	printf("%s\n", ft_itoa(n));
+	return 0;
 }

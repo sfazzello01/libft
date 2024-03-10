@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfazzell <sfazzell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sfazzell <sfazzell@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 12:23:01 by sfazzell          #+#    #+#             */
-/*   Updated: 2024/03/07 19:01:44 by sfazzell         ###   ########.fr       */
+/*   Updated: 2024/03/10 15:34:57 by sfazzell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,7 @@ static size_t ft_count(char const *s, char c)
 			{
 					i++;
 					if (!s[i])
-					{
-						printf("count: %zu\n", count);
 						return (count);
-					}
 			}
 			count++;
 		}
@@ -47,10 +44,7 @@ static void ft_aux(char *s, char c, char **res, size_t *i, size_t *j) {
 	{
         k = 0;
         while (s[*i + k] && s[*i + k] != c)
-		{
-			printf("k: %d\n", k);
             k++;
-		}
         res[*j] = ft_substr(s, *i, k);
         (*j)++;
         *i += k;
@@ -74,7 +68,6 @@ char **ft_split(char const *s, char c)
 			j = 0;
 			while (i < ft_strlen(s))
 			{
-				//printf("i: %zu\n", i);
 				ft_aux((char *)s, c, res, &i, &j);
 			}
 			res[j] = NULL;
@@ -82,19 +75,4 @@ char **ft_split(char const *s, char c)
 		}
 	}
 	return (NULL);
-}
-
-int main()
-{
-	char *s = "lorem ipsum dolor sit amet, consectetur adipiscing elit.";
-	char c = ' ';
-	char **res = ft_split(s, c);
-	int i = 0;
-	while (res[i])
-	{
-		printf("%s - %d\n", res[i], i);
-		i++;
-	}
-	printf("%s\n",res[i]);
-	return 0;
 }
