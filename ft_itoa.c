@@ -6,78 +6,52 @@
 /*   By: sfazzell <sfazzell@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 12:23:10 by sfazzell          #+#    #+#             */
-/*   Updated: 2024/03/12 15:31:29 by sfazzell         ###   ########.fr       */
+/*   Updated: 2024/03/12 16:25:20 by sfazzell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*ft_strrev(char *str)
+static int	ft_numlen(int n)
 {
-	size_t	i;
-	size_t	j;
-	char	tmp;
+	int	len;
 
-	i = 0;
-	j = ft_strlen(str) - 1;
-	while (i < j)
+	len = 0;
+	if (n <= 0)
+		len++;
+	while (n)
 	{
-		tmp = str[i];
-		str[i] = str[j];
-		str[j] = tmp;
-		i++;
-		j--;
+		n /= 10;
+		len++;
 	}
-	return (str);
-}
-
-static size_t	ft_digitcount(int n)
-{
-	size_t	i;
-
-	i = 0;
-	if (n < 0)
-		n = -n;
-	while (n >= 10)
-	{
-		n = n / 10;
-		i++;
-	}
-	return (i + 2);
-}
-
-static void	aux_itoa(int n, char *str, int i)
-{
-	if (n < 10)
-		str[i] = n + '0';
-	else
-	{
-		str[i] = n % 10 + '0';
-		aux_itoa(n / 10, str, i + 1);
-	}
+	return (len);
 }
 
 char	*ft_itoa(int n)
 {
-	size_t	len;
 	char	*str;
-	char	*sgn;
+	int		len;
+	int		sign;
 
 	if (n == -2147483648)
 		return (ft_strdup("-2147483648"));
-	len = ft_digitcount(n);
-	str = calloc(len, 1);
-	if (str)
+	len = ft_numlen(n);
+	sign = 1;
+	if (n < 0)
 	{
-		if (n < 0)
-		{
-			sgn = calloc(2, 1);
-			*sgn = '-';
-			aux_itoa(-n, str, 0);
-			return (ft_strjoin(sgn, ft_strrev(str)));
-		}
-		aux_itoa(n, str, 0);
-		return (ft_strrev(str));
+		sign = -1;
+		n *= -1;
 	}
-	return (NULL);
+	str = (char *)malloc(sizeof(char) * (len + 1));
+	if (!str)
+		return (NULL);
+	str[len] = '\0';
+	while (len--)
+	{
+		str[len] = (n % 10) + '0';
+		n /= 10;
+	}
+	if (sign == -1)
+		str[0] = '-';
+	return (str);
 }

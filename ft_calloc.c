@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfazzell <sfazzell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sfazzell <sfazzell@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 12:34:47 by sfazzell          #+#    #+#             */
-/*   Updated: 2024/02/23 16:49:19 by sfazzell         ###   ########.fr       */
+/*   Updated: 2024/03/12 16:24:52 by sfazzell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,11 @@
 
 void	*ft_calloc(size_t nitems, size_t size)
 {
-	void	*res;
+	void	*ptr;
 
-	res = malloc(nitems * size);
-	if (res)
-	{
-		ft_bzero(res, nitems * size);
-		return (res);
-	}
-	return (NULL);
+	ptr = malloc(nitems * size);
+	if (!ptr)
+		return (NULL);
+	ft_bzero(ptr, nitems * size);
+	return (ptr);
 }
