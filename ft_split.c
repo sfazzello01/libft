@@ -6,73 +6,79 @@
 /*   By: sfazzell <sfazzell@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 12:23:01 by sfazzell          #+#    #+#             */
-/*   Updated: 2024/03/10 15:34:57 by sfazzell         ###   ########.fr       */
+/*   Updated: 2024/03/12 15:28:59 by sfazzell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
-static size_t ft_count(char const *s, char c)
+static int	ft_wordlen(char const *s, char c)
 {
-	size_t	count;
-	size_t	i;
+	int	len;
 
-	i = 0;
-	count = 0;
-	while (s[i])
+	len = 0;
+	while (*s && *s != c)
 	{
-		if (s[i] == c)
+		len++;
+		s++;
+	}
+	return (len);
+}
+
+static int	ft_countwords(char const *s, char c)
+{
+	int	count;
+
+	count = 0;
+	while (*s)
+	{
+		if (*s != c)
 		{
-			while (s[i] == c)
-			{
-					i++;
-					if (!s[i])
-						return (count);
-			}
 			count++;
+			s += ft_wordlen(s, c);
 		}
-		i++;
+		else
+			s++;
 	}
 	return (count);
 }
 
-static void ft_aux(char *s, char c, char **res, size_t *i, size_t *j) {
-	int	k;
-	
-    if (s[*i] != c)
-	{
-        k = 0;
-        while (s[*i + k] && s[*i + k] != c)
-            k++;
-        res[*j] = ft_substr(s, *i, k);
-        (*j)++;
-        *i += k;
-    }
-	else if (s[*i] == c)
-        (*i)++;
+static void	*free_strs(char **strs)
+{
+	int	i;
+
+	i = 0;
+	while (strs[i])
+		free(strs[i++]);
+	free(strs);
+	return (NULL);
 }
 
-char **ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
-	char	**res;
-	size_t	i;
-	size_t	j;
-	
-	if (s)
+	char	**strs;
+	int		i;
+	int		count;
+
+	if (!s)
+		return (NULL);
+	count = ft_countwords(s, c);
+	strs = malloc(sizeof(char *) * (count + 1));
+	if (!strs)
+		return (NULL);
+	strs[count] = NULL;
+	i = 0;
+	while (*s)
 	{
-		res = (char **)malloc(sizeof(char *) * (ft_count(s, c)) + 1);
-		if (res)
+		if (*s != c)
 		{
-			i = 0;
-			j = 0;
-			while (i < ft_strlen(s))
-			{
-				ft_aux((char *)s, c, res, &i, &j);
-			}
-			res[j] = NULL;
-			return (res);
+			strs[i] = ft_substr(s, 0, ft_wordlen(s, c));
+			if (!strs[i++])
+				return (free_strs(strs));
+			s += ft_wordlen(s, c);
 		}
+		else
+			s++;
 	}
-	return (NULL);
+	return (strs);
 }

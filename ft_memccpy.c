@@ -6,7 +6,7 @@
 /*   By: sfazzell <sfazzell@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 12:23:58 by sfazzell          #+#    #+#             */
-/*   Updated: 2024/02/04 12:23:58 by sfazzell         ###   ########.fr       */
+/*   Updated: 2024/03/12 15:32:42 by sfazzell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,19 @@
 
 void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	unsigned char		*d;
-	const unsigned char	*s;
+	unsigned char	*dst_cpy;
+	unsigned char	*src_cpy;
+	size_t			i;
 
-	d = (unsigned char *)dst;
-	s = (const unsigned char *)src;
-	while (n-- > 0)
+	dst_cpy = (unsigned char *)dst;
+	src_cpy = (unsigned char *)src;
+	i = 0;
+	while (i < n)
 	{
-		*d = *s;
-		if (*s == (unsigned char)c)
-			return (d + 1);
-		d++;
-		s++;
+		dst_cpy[i] = src_cpy[i];
+		if (src_cpy[i] == (unsigned char)c)
+			return (dst_cpy + i + 1);
+		i++;
 	}
 	return (NULL);
 }
