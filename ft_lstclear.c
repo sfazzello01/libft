@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncat.c                                       :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sfazzell <sfazzell@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/04 12:26:40 by sfazzell          #+#    #+#             */
-/*   Updated: 2024/02/04 12:26:40 by sfazzell         ###   ########.fr       */
+/*   Created: 2024/03/12 14:38:12 by sfazzell          #+#    #+#             */
+/*   Updated: 2024/03/12 14:38:18 by sfazzell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncat(char *dest, const char *src, size_t n)
+void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	int	i;
-	int	l;
+	t_list	*tmp;
 
-	l = ft_strlen(dest);
-	i = 0;
-	while (src[i] != '\0' && i < n)
+	while (*lst)
 	{
-		dest[l + i] = src[i];
-		i++;
+		tmp = (*lst)->next;
+		ft_lstdelone(*lst, del);
+		*lst = tmp;
 	}
-	dest[l + i] = '\0';
-	return (dest);
 }

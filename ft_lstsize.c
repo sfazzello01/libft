@@ -1,36 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmap.c                                        :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sfazzell <sfazzell@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/04 12:26:18 by sfazzell          #+#    #+#             */
-/*   Updated: 2024/02/04 12:26:18 by sfazzell         ###   ########.fr       */
+/*   Created: 2024/03/12 14:39:05 by sfazzell          #+#    #+#             */
+/*   Updated: 2024/03/12 14:39:10 by sfazzell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strmap(char const *s, char (*f)(char))
+int	ft_lstsize(t_list *lst)
 {
-	char	*new;
-	size_t	i;
+	int		count;
 
-	i = 0;
-	if (s && f)
+	count = 0;
+	while (lst)
 	{
-		new = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
-		if (new)
-		{
-			while (s[i])
-			{
-				new[i] = f(s[i]);
-				i++;
-			}
-			new[i] = '\0';
-			return (new);
-		}
+		count++;
+		lst = lst->next;
 	}
-	return (NULL);
+	return (count);
 }
